@@ -2,7 +2,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ main ]          # eller master om du använder det
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -13,7 +13,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        # Lägg gärna till macos-latest senare om du vill ha tre plattformar
 
     steps:
     - name: Checkout code
@@ -23,8 +22,8 @@ jobs:
       uses: actions/setup-java@v4
       with:
         java-version: '17'
-        distribution: 'temurin'   # Adoptium/Temurin är stabil och snabb
-        cache: maven              # Cachning av Maven-beroenden → snabbare builds
+        distribution: 'temurin'
+        cache: maven
 
     - name: Cache Maven packages
       uses: actions/cache@v4
@@ -35,11 +34,6 @@ jobs:
 
     - name: Build and run tests with Maven
       run: mvn clean test --batch-mode --no-transfer-progress
-
-    # Valfrivilligt: Om du vill ha mer detaljerad utskrift vid fel
-    # - name: Upload test results on failure
-    #   if: failure()
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: test-reports-${{ matrix.os }}
-    #     path: target/surefire-reports/
+      env:
+        # Extra säkerhet på Linux (kan hjälpa vid problem)
+        DISPLAY: ''   # För Linux

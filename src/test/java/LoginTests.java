@@ -1,14 +1,22 @@
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import pages.LoginPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.AfterAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+import pages.LoginPage;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class LoginTests {
@@ -21,14 +29,28 @@ public class LoginTests {
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
+
+        // Headless-inställningar – viktiga för GitHub Actions (Linux) och bra för prestanda
+        options.addArguments("--headless=new");              // Modernt headless-läge
+        options.addArguments("--no-sandbox");                // Krävs ofta på Linux/CI
+        options.addArguments("--disable-dev-shm-usage");     // Förhindrar /dev/shm-problem i CI
+        options.addArguments("--disable-gpu");               // Rekommenderas i headless
+        options.addArguments("--window-size=1920,1080");     // Fast storlek för konsistens
+        options.addArguments("--remote-allow-origins=*");    // Undviker CORS-varningar
+
+        // Dina befintliga password-manager-inställningar
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
         prefs.put("profile.password_manager_leak_detection", false);
 
         options.setExperimentalOption("prefs", prefs);
+
+        // Övriga bra inställningar
         options.addArguments("--disable-infobars");
-        options.addArguments("--start-maximized");
+
+        // Kommentera ut --start-maximized i headless-läge (funkar inte på samma sätt)
+        // options.addArguments("--start-maximized");
 
         driver = new ChromeDriver(options);
     }
