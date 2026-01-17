@@ -1,6 +1,6 @@
 # Uppg2 - Selenium WebDriver med Java
 
-Detta är inlämningsuppgift 2 i kursen Continuous Integration (CI).  
+Detta är inlämningsuppgift 2 i kursenTestautomatisering med Continuous Integration (CI).  
 Projektet använder **Selenium WebDriver** i **Java** med **JUnit 5** och **Maven** för att automatisera tester mot webbplatsen [saucedemo.com](https://www.saucedemo.com/).
 
 ## Uppgiftens krav
