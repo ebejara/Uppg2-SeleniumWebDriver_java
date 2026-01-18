@@ -1,6 +1,6 @@
 # Uppg2 - Selenium WebDriver med Java
 
-Detta är inlämningsuppgift 2 i kursen Continuous Integration (CI).  
+Detta är inlämningsuppgift 2 i kursen Testautomatisering med Continuous Integration (CI).  
 Projektet använder **Selenium WebDriver** i **Java** med **JUnit 5** och **Maven** för att automatisera tester mot webbplatsen [saucedemo.com](https://www.saucedemo.com/).
 
 ## Uppgiftens krav
@@ -32,6 +32,8 @@ Projektet använder **Selenium WebDriver** i **Java** med **JUnit 5** och **Mave
 ## Installation & Körning lokalt
 
 1. Klona repot:
-   ```bash
    git clone https://github.com/ebejara/Uppg2-SeleniumWebDriver_java.git
    cd Uppg2-SeleniumWebDriver_java
+2. Bygg
+
+3. Kör testerna
