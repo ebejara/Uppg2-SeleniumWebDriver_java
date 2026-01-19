@@ -97,7 +97,7 @@ public class LoginTests {
     public void testInvalidUsername() {
         loginPage.login("wrong_user", "secret_sauce");
         assertTrue(loginPage.isErrorMessageDisplayed(), "Felmeddelande borde visas");
-        assertEquals("Username and password do not match any user in this service",
+        assertEquals("Epic sadface: Username and password do not match any user in this service",
                 loginPage.getErrorMessageText());
     }
 
@@ -107,7 +107,7 @@ public class LoginTests {
     public void testInvalidPassword() {
         loginPage.login("standard_user", "wrong_password");
         assertTrue(loginPage.isErrorMessageDisplayed(), "Felmeddelande borde visas");
-        assertEquals("Username and password do not match any user in this service",
+        assertEquals("Epic sadface: Username and password do not match any user in this service",
                 loginPage.getErrorMessageText());
     }
 }
