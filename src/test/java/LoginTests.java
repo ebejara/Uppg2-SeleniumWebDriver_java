@@ -85,7 +85,7 @@ public class LoginTests {
 
     @Test
     @Order(1)
-    @DisplayName("G: Lyckad inloggning")
+    @DisplayName("Lyckad inloggning")
     public void testSuccessfulLogin() {
         loginPage.login("standard_user", "secret_sauce");
         assertTrue(loginPage.isInventoryPage(), "Borde vara på inventory-sidan efter lyckad inloggning");
@@ -93,21 +93,21 @@ public class LoginTests {
 
     @Test
     @Order(2)
-    @DisplayName("VG: Fel användarnamn")
+    @DisplayName("Fel användarnamn")
     public void testInvalidUsername() {
         loginPage.login("wrong_user", "secret_sauce");
         assertTrue(loginPage.isErrorMessageDisplayed(), "Felmeddelande borde visas");
-        assertEquals("Epic sadface: Username and password do not match any user in this service",
+        assertEquals("Username and password do not match any user in this service",
                 loginPage.getErrorMessageText());
     }
 
     @Test
     @Order(3)
-    @DisplayName("VG: Fel lösenord")
+    @DisplayName("Fel lösenord")
     public void testInvalidPassword() {
         loginPage.login("standard_user", "wrong_password");
         assertTrue(loginPage.isErrorMessageDisplayed(), "Felmeddelande borde visas");
-        assertEquals("Epic sadface: Username and password do not match any user in this service",
+        assertEquals("Username and password do not match any user in this service",
                 loginPage.getErrorMessageText());
     }
 }
